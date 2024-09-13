@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Database</title>
+    <script>
+        window.onload = function() {
+            const a = prompt('Сколько фильмов вы уже посмотрели?');
+
+            const Movies = {
+                count: a,
+                film: {}
+            };
+
+            for (let i = 0; i < a; i++) {
+                let Name;
+                let Rating;
+
+                while (true) {
+                    Name = prompt('Какое название одного из последних просмотренных фильмов?');
+                    if (Name && Name.length <= 50) {
+                        break;
+                    } else {
+                        alert('Введите еще раз');
+                    }
+                }
+                while (true) {
+                    Rating = prompt('Оценочку фильму от 1 до 5');
+                    if (Rating && Rating < 6 && Rating > 0) {
+                        break;
+                    } else {
+                        alert('Введите еще раз');
+                    }
+                }
+              Movies.film[Name] = Rating;
+            }
+
+            console.log(Movies);
+        };
+    </script>
+</head>
+<body>
+    <h1>База фильмов добавлена в консоль</h1>
+</body>
+</html>
