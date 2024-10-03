@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shirt Details</title>
+    <style>
+        body {
+            background-color: #f0f0f0; 
+        }
+        .shirt-detail {
+            margin: 20px;
+            display: flex; 
+            align-items: center; 
+            background-color: white; 
+            padding: 20px;
+        }
+        .shirt-detail img {
+            max-width: 300px; 
+            height: auto; 
+            margin: 50px; 
+        }
+        .color-buttons {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            margin-inline: 20px;
+        }
+        .color-button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #000000;
+            margin: 5px 0; 
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .toggle-button {
+            margin: 5px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="shirt-detail" id="shirtDetail"></div>
+<script src="shirts.js"></script>
+<script>
+    const selectedShirtName = localStorage.getItem('selectedShirt');
+    
+    if (selectedShirtName) {
+        const shirt = shirts.find(s => s.name === selectedShirtName);
+        
+        if (shirt) {
+            const shirtDetailDiv = document.getElementById('shirtDetail');
+
+            const title = document.createElement('h1');
+            title.textContent = shirt.name;
+            shirtDetailDiv.appendChild(title);
+
+            const img = document.createElement('img');
+            img.src = shirt.colors[Object.keys(shirt.colors)[0]].front;
+            img.alt = `${shirt.name} Front`;
+            shirtDetailDiv.appendChild(img);
+
+            const colorButtons = document.createElement('div');
+            colorButtons.classList.add('color-buttons');
+
+            Object.keys(shirt.colors).forEach(color => {
+                const colorButton = document.createElement('div');
+                colorButton.classList.add('color-button');
+                colorButton.style.backgroundColor = color;
+           
+                colorButton.addEventListener('click', () => {
+                    img.src = shirt.colors[color].front;
+                    img.alt = `${shirt.name} - ${color} Front`;
+                    currentSide = 'front';
+                });
+                colorButtons.appendChild(colorButton);
+            });
+            shirtDetailDiv.appendChild(colorButtons);
+
+           
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('button-container');
+            let currentSide = 'front'; 
+            const frontButton = document.createElement('button');
+            frontButton.classList.add('toggle-button');
+            frontButton.textContent = 'Front';
+            frontButton.addEventListener('click', () => {
+                img.src = shirt.colors[Object.keys(shirt.colors).find(color => img.src.includes(color))].front;
+                img.alt = `${shirt.name} Front`;
+                currentSide = 'front';
+            });
+            const backButton = document.createElement('button');
+            backButton.classList.add('toggle-button');
+            backButton.textContent = 'Back';
+            backButton.addEventListener('click', () => {
+                img.src = shirt.colors[Object.keys(shirt.colors).find(color => img.src.includes(color))].back; //
+                img.alt = `${shirt.name} Back`;
+                currentSide = 'back';
+            });
+
+            buttonContainer.appendChild(frontButton);
+            buttonContainer.appendChild(backButton);
+            shirtDetailDiv.appendChild(buttonContainer);
+        }
+    }
+</script>
+
+</body>
+</html>
