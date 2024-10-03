@@ -68,6 +68,12 @@
             const seePageButton = document.createElement('button');
             seePageButton.textContent = 'See Page';
             shirtDiv.appendChild(buttonContainer);
+
+             seePageButton.addEventListener('click', () => {
+                localStorage.setItem('selectedShirt', shirt.name); 
+                window.location.href = 'details.html';
+            });
+            
             buttonContainer.appendChild(quickViewButton);
             buttonContainer.appendChild(seePageButton);
             shirtContainer.appendChild(shirtDiv);
