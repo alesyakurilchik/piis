@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', function () { //добавляет
 
     targets.forEach(target => {//Начинает цикл по всем найденным элементам `target`
 
-        target.addEventListener('mousedown', startDragging);//Добавляет обработчик события `mousedown`, который запускает функцию `startDragging`, когда пользователь нажимает на элемент мышью
-        target.addEventListener('touchstart', startDragging);//Добавляет обработчик события `touchstart` для сенсорных экранов, который также запускает `startDragging`
+        target.addEventListener('mousedown', startDragging);
+        target.addEventListener('touchstart', startDragging);
 
-        target.addEventListener('dblclick', stickToMouse);//Добавляет обработчик события `dblclick`, который вызывает функцию `stickToMouse`, когда элемент дважды кликают
-        target.addEventListener('touchstart', stickToMouse);//Добавляет обработчик события `touchstart`, который также вызывает `stickToMouse` на сенсорных экранах
-
-        target.addEventListener('click', unstickFromMouse);//Добавляет обработчик события `click`, который вызывает функцию `unstickFromMouse`, когда элемент кликают
-        target.addEventListener('touchend', unstickFromMouse);//Добавляет обработчик события `touchend`, который вызывает `unstickFromMouse` при завершении касания на сенсорных экранах
+        target.addEventListener('dblclick', stickToMouse);
+        target.addEventListener('touchstart', stickToMouse);
+        
+        target.addEventListener('click', unstickFromMouse);
+        target.addEventListener('touchend', unstickFromMouse);
     });
 
 
@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function () { //добавляет
         }
     }
 
-    document.addEventListener('mousemove', moveElement);//Добавляет обработчик события `mousemove`, который вызывает функцию `moveElement`, когда мышь движется
-    document.addEventListener('touchmove', moveElement);//Добавляет обработчик события `touchmove` для сенсорных экранов, который также вызывает `moveElement`
+    document.addEventListener('mousemove', moveElement);
+    document.addEventListener('touchmove', moveElement);
 
     function moveElement(event) {//Определяет функцию `moveElement`, которая будет перемещать элемент
         if (draggedElement) {//Проверяет, установлен ли `draggedElement` (т.е. есть ли элемент, который нужно перемещать)
@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function () { //добавляет
     }
 
 
-    document.addEventListener('mouseup', stopDragging);//Добавляет обработчик события `mouseup`, который вызывает функцию `stopDragging`, когда кнопка мыши отпускается
-    document.addEventListener('touchend', stopDragging);//Добавляет обработчик события `touchend`, который вызывает `stopDragging` при завершении касания
+    document.addEventListener('mouseup', stopDragging);
+    document.addEventListener('touchend', stopDragging);
 
     function stopDragging(event) {//Определяет функцию `stopDragging`, которая останавливает перетаскивание
         if (!isStuckToMouse) {//Проверяет, прикреплен ли элемент к мыши
@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', function () { //добавляет
     }
 
    
-    document.addEventListener('touchstart', function (event) {//Добавляет обработчик события `touchstart`, который выполняет анонимную функцию
+    document.addEventListener('touchstart', function (event) {
         if (event.touches.length === 2 && draggedElement) {//Проверяет, что на экране два касания и есть перемещаемый элемент
-            draggedElement.style.top = originalPosition.top;/
+            draggedElement.style.top = originalPosition.top;
             draggedElement.style.left = originalPosition.left;
             //Возвращает элемент на его исходные позиции
             draggedElement.style.backgroundColor = 'red';
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () { //добавляет
     });
 
 
-    document.addEventListener('keydown', function (event) {//Добавляет обработчик события `keydown`, который выполняет анонимную функцию
+    document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && draggedElement) {//Проверяет, нажата ли клавиша `Escape` и есть ли перемещаемый элемент
             draggedElement.style.top = originalPosition.top;
             draggedElement.style.left = originalPosition.left;
