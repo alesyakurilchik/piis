@@ -36,25 +36,27 @@
 
     // Хранение нарисованных фигур
     const shapes = [];
-
+//для изменения значения выбранной фигуры
     document.querySelectorAll('input[name="shape"]').forEach(radio => {
         radio.addEventListener('change', (e) => {
             selectedShape = e.target.value;
         });
     });
 
+    // получение началных координат 
     canvas.addEventListener('mousedown', (e) => {
         isDrawing = true;
         startX = e.offsetX;
         startY = e.offsetY;
     });
 
+// начало рисования когда двигаем зажатую мышку
     canvas.addEventListener('mousemove', (e) => {
         if (!isDrawing) return;
 
         const currentX = e.offsetX;
         const currentY = e.offsetY;
-
+// удаляются нарисованые фигруры ранее
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         redrawShapes();
 
