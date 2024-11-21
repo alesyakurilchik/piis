@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Не робит(((
+   
     document.addEventListener('touchstart', function (event) {
         if (event.touches.length === 2 && draggedElement) {
             draggedElement.style.top = originalPosition.top;
