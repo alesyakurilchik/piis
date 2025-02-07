@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Film1Font';
-    src: url('../fonts/ofont.ru_Goznak.ttf') format('truetype');
+    src: url('./fonts/ofont.ru_Goznak.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -8,14 +8,14 @@
 @font-face {
     font-family: 'Film2Font';
 
-    src: url('../fonts/ofont.ru_Nexa Script.ttf') format('truetype');
+    src: url('./fonts/ofont.ru_Nexa Script.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Film3Font';
-    src: url('../fonts/ofont.ru_Arco.ttf') format('truetype');
+    src: url('./fonts/ofont.ru_Arco.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
