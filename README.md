@@ -8,4 +8,4 @@
 <br><a href="https://alesyakurilchik.github.io/piis/LABA_7_PIIC/index.html">Ссылка на лабу 7</a>
 <br><a href="https://alesyakurilchik.github.io/piis/LABA_7_PIIC/index_with_cavas.html">Ссылка на лабу 8</a>
 <br><a href="https://alesyakurilchik.github.io/piis/Laba_1_AVT/index.html">Ссылка на лабу 1 ЭВТ</a>
-<br><a href="https://alesyakurilchik.github.io/piis/Laba2/6_lab_EVT.html">Ссылка на лабу 2 ЭВТ</a>
+<br><a href="https://alesyakurilchik.github.io/piis/Laba_2/6_lab_EVT.html">Ссылка на лабу 2 ЭВТ</a>
