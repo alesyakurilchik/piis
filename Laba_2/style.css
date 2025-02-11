@@ -1,0 +1,95 @@
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #aed1da;
+}
+
+header {
+  background: rgb(230, 173, 173);
+  height: 100px;
+}
+
+h1 {
+  text-align: center;
+  color: black;
+  line-height: 100px;
+}
+
+button {
+  margin: 50px;
+  font-size: 20px;
+  background-color: red;
+  animation: vibrate 0.1s infinite;
+}
+
+button:hover {
+  animation: none;
+  background-color: green;
+}
+
+@keyframes vibrate {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+a {
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+  position: relative;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: green;
+  transition: all 0.3s ;
+}
+
+a:hover {
+  color: green;
+}
+
+a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.ball {
+  width: 50px;
+  height: 50px;
+  background-color: #1a33a4;
+  border-radius: 50%;
+  right: 200px;
+  position: absolute;
+
+  animation: bounce 3s  infinite;
+}
+
+@keyframes bounce {
+  0% { top: 20%; transform: scaleY(1) scaleX(1); }
+  20% { top: 80%; transform: scaleY(0.6) scaleX(1.2); }
+  30% { top: 60%; transform: scaleY(1) scaleX(1); }
+  40% { top: 80%; transform: scaleY(0.75) scaleX(1.1); }
+  50% { top: 70%; transform: scaleY(1) scaleX(1); }
+  55% { top: 80%; transform: scaleY(0.85) scaleX(1.05); }
+  60% { top: 75%; transform: scaleY(1) scaleX(1); }
+  65% { top: 80%; transform: scaleY(0.92) scaleX(1.03); }
+  70% { top: 77.5%; transform: scaleY(1) scaleX(1); }
+  75% { top: 80%; transform: scaleY(0.96) scaleX(1.02); }
+  80% { top: 78.75%; transform: scaleY(1) scaleX(1); }
+  85% { top: 80%; transform: scaleY(0.98) scaleX(1.01); }
+  90% { top: 79.375%; transform: scaleY(1) scaleX(1); }
+  95% { top: 80%; transform: scaleY(0.99) scaleX(1.005); }
+  100% { top: 79.6875%; transform: scaleY(1) scaleX(1); }
+}
