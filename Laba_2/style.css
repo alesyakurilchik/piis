@@ -42,18 +42,18 @@ a {
   font-size: 20px;
   color: black;
   text-decoration: none;
-  position: relative;
+  position: relative; /**относительные**/
 }
 
 a::after {
   content: '';
-  position: absolute;
+  position: absolute; /**Чтобы  элемент распологался относительно родительского элемента **/
   width: 0;
   height: 2px;
-  bottom: 0;
+  bottom: 0; //**линия снизу**/
   left: 50%;
   background-color: green;
-  transition: all 0.3s ;
+  transition: all 0.3s ; /**встроенная анимация для ПЛАВНОГО отобпажения линии **/
 }
 
 a:hover {
@@ -71,7 +71,7 @@ a:hover::after {
   background-color: #1a33a4;
   border-radius: 50%;
   right: 200px;
-  position: absolute;
+  position: absolute; 
 
   animation: bounce 3s  infinite;
 }
