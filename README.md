@@ -12,3 +12,4 @@
 <br><a href="https://alesyakurilchik.github.io/piis/Laba_3/EVT_lab7.html">Ссылка на лабу 3 ЭВТ</a>
 <br><a href="https://alesyakurilchik.github.io/piis/Laba_4/EVT_lab8.html">Ссылка на лабу 4 ЭВТ</a>
 <br><a href="https://alesyakurilchik.github.io/piis/Laba_5/EVT_lab9.html">Ссылка на лабу 5 ЭВТ</a>
+<br><a href="https://alesyakurilchik.github.io/piis/Laba_6/index.html">Ссылка на лабу 6 ЭВТ</a>
