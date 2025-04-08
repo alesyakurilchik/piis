@@ -94,7 +94,7 @@ footer{
     height: 40px;
     position: sticky;
     top: 50px;
-    margin-left: 250px;
+    margin-left: 100px;
     color: aliceblue;
     background-color:  rgb(255, 0, 21);
     border: 1px solid #3a0505;
@@ -108,7 +108,7 @@ footer{
     height: 40px;
     position: sticky;
     top: 50px;
-    margin-left: 400px;
+    margin-left: 150px;
     color: aliceblue;
     background-color: rgb(58, 165, 42);
     border: 1px solid #ff0000;
@@ -122,7 +122,7 @@ footer{
     height: 40px;
     position: sticky;
     top: 50px;
-    margin-left: 660px;
+    margin-left: 200px;
     color: aliceblue;
     background-color: rgb(255, 204, 0);
     border: 1px solid #97669d;
@@ -136,7 +136,7 @@ footer{
     height: 40px;
     position: sticky;
     top: 50px;
-    margin-left: 940px;
+    margin-left: 250px;
     color: aliceblue;
     background-color: rgb(45, 126, 133);
     border: 1px solid #0a005e;
