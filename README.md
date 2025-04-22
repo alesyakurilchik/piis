@@ -17,7 +17,7 @@
 # CV
 ## Личная информация
 
-|![](https://github.com/alesyakurilchik/piis/blob/main/IMG_4935%201%20(1).png)|◦ ФИО: Курильчик Алеся Вячеславовна <br> ◦ Дата рождения: 10.01.2005 <br> ◦ Группа: 210901 <br> ◦ GitHub: [alesyakurilchik](https://github.com/alesyakurilchik/ "Перейти по ссылке") <br> ◦ Gmail: alesyakurilchik2005@gmail.com <br> ◦ Deploy: [alesyakurilchik.github.io/piis/](https://alesyakurilchik.github.io/ "Перейти по ссылке")|
+|![](https://github.com/alesyakurilchik/piis/blob/main/Я%201.png)|◦ ФИО: Курильчик Алеся Вячеславовна <br> ◦ Дата рождения: 10.01.2005 <br> ◦ Группа: 210901 <br> ◦ GitHub: [alesyakurilchik](https://github.com/alesyakurilchik/ "Перейти по ссылке") <br> ◦ Gmail: alesyakurilchik2005@gmail.com <br> ◦ Deploy: [alesyakurilchik.github.io/piis/](https://alesyakurilchik.github.io/ "Перейти по ссылке")|
 |:---|:---|
 
 ## О себе
