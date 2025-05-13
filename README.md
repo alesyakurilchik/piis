@@ -13,7 +13,7 @@
 <br><a href="https://alesyakurilchik.github.io/piis/Laba_4/EVT_lab8.html">Ссылка на лабу 4 ЭВТ</a>
 <br><a href="https://alesyakurilchik.github.io/piis/Laba_5/EVT_lab9.html">Ссылка на лабу 5 ЭВТ</a>
 <br><a href="https://alesyakurilchik.github.io/piis/Laba_6/index.html">Ссылка на лабу 6 ЭВТ</a>
-<br><a href="https://alesyakurilchik.github.io/piis/kyrsa4/index.html">Ссылка на курсач</a>
+<br><a href="https://alesyakurilchik.github.io/piis/kyrsa4/index.html">Ссылка на курсовую работу</a>
 
 # CV
 ## Личная информация
