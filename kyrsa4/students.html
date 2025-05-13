@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студенты | Система учета успеваемости студентов</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-theme">
+<header class="header">
+    <div class="container header__container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Логотип" class="logo__img">
+            <h1 class="logo__title">СтудУспех</h1>
+        </div>
+        <nav class="nav">
+            <button class="nav__toggle" id="navToggle">
+                <span class="nav__toggle-line"></span>
+            </button>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="students.html" class="nav__link nav__link--active">Студенты</a></li>
+                <li class="nav__item"><a href="performance.html" class="nav__link">Успеваемость</a></li>
+                <li class="nav__item"><a href="dashboard.html" class="nav__link">Доска</a>
+                <li class="nav__item"><a href="reports.html" class="nav__link">Отчеты</a></li>
+                <li class="nav__item"><a href="login.html" class="nav__link nav__link--highlight">Войти</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--light"></i>
+            <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--dark"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+    <section class="page-header">
+        <div class="container">
+            <h2 class="page-title">Список студентов</h2>
+            <div class="breadcrumbs">
+                <a href="index.html" class="breadcrumbs__link">Главная</a>
+                <span class="breadcrumbs__separator">/</span>
+                <span class="breadcrumbs__current">Студенты</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="students-section">
+        <div class="container">
+            <div class="students-controls">
+                <div class="students-search">
+                    <label for="studentSearch"></label><input type="text" id="studentSearch" class="students-search__input" placeholder="Поиск студента...">
+                    <button class="students-search__button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="students-filters">
+                    <label for="facultyFilter"></label><select id="facultyFilter" class="students-filters__select">
+                        <option value="">Все факультеты</option>
+                        <option value="1">Информатика</option>
+                        <option value="2">Экономика</option>
+                        <option value="3">Юриспруденция</option>
+                    </select>
+                    <label for="courseFilter"></label><select id="courseFilter" class="students-filters__select">
+                        <option value="">Все курсы</option>
+                        <option value="1">1 курс</option>
+                        <option value="2">2 курс</option>
+                        <option value="3">3 курс</option>
+                        <option value="4">4 курс</option>
+                    </select>
+                    <label for="groupFilter"></label><select id="groupFilter" class="students-filters__select">
+                        <option value="">Все группы</option>
+                        <option value="101">Группа 101</option>
+                        <option value="102">Группа 102</option>
+                        <option value="201">Группа 201</option>
+                    </select>
+                </div>
+                <button class="btn btn--primary students-controls__add">
+                    <i class="fas fa-plus"></i> Добавить студента
+                </button>
+            </div>
+
+            <div class="students-table-wrapper">
+                <table class="students-table" id="studentsTable">
+                    <thead>
+                    <tr>
+                        <th class="students-table__header students-table__header--sortable" data-sort="id">ID <i class="fas fa-sort"></i></th>
+                        <th class="students-table__header students-table__header--sortable" data-sort="name">ФИО <i class="fas fa-sort"></i></th>
+                        <th class="students-table__header">Факультет</th>
+                        <th class="students-table__header">Курс</th>
+                        <th class="students-table__header">Группа</th>
+                        <th class="students-table__header students-table__header--sortable" data-sort="gpa">Средний балл <i class="fas fa-sort"></i></th>
+                        <th class="students-table__header">Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="students-table__row">
+                        <td class="students-table__cell">1</td>
+                        <td class="students-table__cell">Иванов Иван Иванович</td>
+                        <td class="students-table__cell">Информатика</td>
+                        <td class="students-table__cell">2</td>
+                        <td class="students-table__cell">101</td>
+                        <td class="students-table__cell">4.5</td>
+                        <td class="students-table__cell students-table__cell--actions">
+                            <button class="students-table__action students-table__action--view" title="Просмотр">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--edit" title="Редактировать">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--delete" title="Удалить">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="students-table__row">
+                        <td class="students-table__cell">2</td>
+                        <td class="students-table__cell">Петров Петр Петрович</td>
+                        <td class="students-table__cell">Экономика</td>
+                        <td class="students-table__cell">1</td>
+                        <td class="students-table__cell">102</td>
+                        <td class="students-table__cell">4.2</td>
+                        <td class="students-table__cell students-table__cell--actions">
+                            <button class="students-table__action students-table__action--view" title="Просмотр">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--edit" title="Редактировать">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--delete" title="Удалить">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="students-table__row">
+                        <td class="students-table__cell">3</td>
+                        <td class="students-table__cell">Сидорова Анна Сергеевна</td>
+                        <td class="students-table__cell">Юриспруденция</td>
+                        <td class="students-table__cell">3</td>
+                        <td class="students-table__cell">201</td>
+                        <td class="students-table__cell">4.8</td>
+                        <td class="students-table__cell students-table__cell--actions">
+                            <button class="students-table__action students-table__action--view" title="Просмотр">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--edit" title="Редактировать">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--delete" title="Удалить">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="students-table__row">
+                        <td class="students-table__cell">4</td>
+                        <td class="students-table__cell">Козлов Дмитрий Александрович</td>
+                        <td class="students-table__cell">Информатика</td>
+                        <td class="students-table__cell">2</td>
+                        <td class="students-table__cell">101</td>
+                        <td class="students-table__cell">3.9</td>
+                        <td class="students-table__cell students-table__cell--actions">
+                            <button class="students-table__action students-table__action--view" title="Просмотр">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--edit" title="Редактировать">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--delete" title="Удалить">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="students-table__row">
+                        <td class="students-table__cell">5</td>
+                        <td class="students-table__cell">Новикова Елена Владимировна</td>
+                        <td class="students-table__cell">Экономика</td>
+                        <td class="students-table__cell">4</td>
+                        <td class="students-table__cell">102</td>
+                        <td class="students-table__cell">4.7</td>
+                        <td class="students-table__cell students-table__cell--actions">
+                            <button class="students-table__action students-table__action--view" title="Просмотр">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--edit" title="Редактировать">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="students-table__action students-table__action--delete" title="Удалить">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button class="pagination__button pagination__button--prev" disabled>
+                    <i class="fas fa-chevron-left"></i> Предыдущая
+                </button>
+                <div class="pagination__pages">
+                    <button class="pagination__page pagination__page--active">1</button>
+                    <button class="pagination__page">2</button>
+                    <button class="pagination__page">3</button>
+                    <span class="pagination__ellipsis">...</span>
+                    <button class="pagination__page">10</button>
+                </div>
+                <button class="pagination__button pagination__button--next">
+                    Следующая <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="studentModal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 class="modal__title">Информация о студенте</h3>
+                <button class="modal__close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal__body">
+                <div class="student-profile">
+                    <div class="student-profile__avatar">
+                        <img src="https://via.placeholder.com/150" alt="Фото студента" class="student-profile__img">
+                    </div>
+                    <div class="student-profile__info">
+                        <h4 class="student-profile__name">Иванов Иван Иванович</h4>
+                        <p class="student-profile__detail"><strong>ID:</strong> 1</p>
+                        <p class="student-profile__detail"><strong>Факультет:</strong> Информатика</p>
+                        <p class="student-profile__detail"><strong>Курс:</strong> 2</p>
+                        <p class="student-profile__detail"><strong>Группа:</strong> 101</p>
+                        <p class="student-profile__detail"><strong>Средний балл:</strong> 4.5</p>
+                        <p class="student-profile__detail"><strong>Дата рождения:</strong> 01.01.2000</p>
+                        <p class="student-profile__detail"><strong>Email:</strong> ivanov@example.com</p>
+                        <p class="student-profile__detail"><strong>Телефон:</strong> +7 (123) 456-78-90</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--secondary" id="closeModalBtn">Закрыть</button>
+                <button class="btn btn--primary">Редактировать</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__column">
+                <div class="logo footer__logo">
+                    <img src="images/logo.png" alt="Логотип" class="logo__img">
+                    <h2 class="logo__title">СтудУспех</h2>
+                </div>
+                <p class="footer__text">Современная система учета успеваемости студентов для учебных заведений</p>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Навигация</h3>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="index.html" class="footer__link">Главная</a></li>
+                    <li class="footer__item"><a href="students.html" class="footer__link">Студенты</a></li>
+                    <li class="footer__item"><a href="performance.html" class="footer__link">Успеваемость</a></li>
+                    <li class="footer__item"><a href="reports.html" class="footer__link">Отчеты</a></li>
+                </ul>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Контакты</h3>
+                <address class="footer__address">
+                    <a href="https://www.google.com/maps/search/google/@62.2264806,-6.5902735,710m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+                       class="footer__contact"><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 123</a>
+                    <p>
+                    <a href="tel:+375293334192" class="footer__contact"><i class="fas fa-phone"></i> +7 (123) 456-78-90</a>
+                    <p>
+                    <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSBnNZrQqTZTGRwsGcdPxJxRfkcZZVgbcljJtphKFBHJwKglgmPvNsnnLPxWrHCHCcMgQZdB"
+                       class="footer__contact"><i class="fas fa-envelope"></i> info@studuspeh.ru</a>
+                </address>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Подписка на новости</h3>
+                <form class="footer__form">
+                    <label>
+                        <input type="email" class="footer__input" placeholder="Ваш email" required>
+                    </label>
+                    <button type="submit" class="footer__button">Подписаться</button>
+                </form>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copyright">© 2025 СтудУспех. Все права защищены.</p>
+
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script src="scripts.js"></script>
+</body>
+</html>

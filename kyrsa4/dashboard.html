@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет | Система учета успеваемости студентов</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="light-theme">
+<header class="header">
+    <div class="container header__container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Логотип" class="logo__img">
+
+        </div>
+        <nav class="nav">
+            <button class="nav__toggle" id="navToggle">
+                <span class="nav__toggle-line"></span>
+            </button>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="students.html" class="nav__link">Студенты</a></li>
+                <li class="nav__item"><a href="performance.html" class="nav__link">Успеваемость</a></li>
+                <li class="nav__item"><a href="dashboard.html" class="nav__link">Доска</a>
+                <li class="nav__item"><a href="reports.html" class="nav__link">Отчеты</a></li>
+                <li class="nav__item"><a href="schedule.html" class="nav__link">Расписание</a></li>
+                <li class="nav__item"><a href="attendance.html" class="nav__link">Посещаемость</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <div class="notifications">
+                <button class="notifications__button">
+                    <i class="fas fa-bell"></i>
+                    <span class="notifications__badge">3</span>
+                </button>
+                <div class="notifications__dropdown">
+                    <div class="notifications__header">
+                        <h3 class="notifications__title">Уведомления</h3>
+                        <button class="notifications__mark-all">Отметить все как прочитанные</button>
+                    </div>
+                    <div class="notifications__list">
+                        <div class="notification notification--unread">
+                            <div class="notification__icon notification__icon--info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Новая оценка</div>
+                                <div class="notification__text">Вам выставлена новая оценка по предмету "Математика"</div>
+                                <div class="notification__time">2 часа назад</div>
+                            </div>
+                        </div>
+                        <div class="notification notification--unread">
+                            <div class="notification__icon notification__icon--warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Пропуск занятия</div>
+                                <div class="notification__text">Зафиксирован пропуск занятия по предмету "Физика"</div>
+                                <div class="notification__time">Вчера</div>
+                            </div>
+                        </div>
+                        <div class="notification notification--unread">
+                            <div class="notification__icon notification__icon--success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Изменение расписания</div>
+                                <div class="notification__text">Изменено расписание на следующую неделю</div>
+                                <div class="notification__time">2 дня назад</div>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div class="notification__icon notification__icon--info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Новый документ</div>
+                                <div class="notification__text">Добавлен новый документ в раздел "Материалы"</div>
+                                <div class="notification__time">3 дня назад</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="user-profile">
+                <button class="user-profile__button">
+                    <img src="images/user-avatar..jpg" alt="Аватар пользователя" class="user-profile__avatar">
+                    <span class="user-profile__name">Иванов И.И.</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="user-profile__dropdown">
+                    <a href="profile.html" class="user-profile__link">
+                        <i class="fas fa-user"></i> Мой профиль
+                    </a>
+                    <a href="settings.html" class="user-profile__link">
+                        <i class="fas fa-cog"></i> Настройки
+                    </a>
+                                      <div class="user-profile__divider"></div>
+                    <a href="index.html" class="user-profile__link user-profile__link--logout">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </a>
+                </div>
+            </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--light"></i>
+            <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--dark"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <ul class="sidebar-nav__list">
+                    <li class="sidebar-nav__item sidebar-nav__item--active">
+                        <a href="dashboard.html" class="sidebar-nav__link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Обзор</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="profile.html" class="sidebar-nav__link">
+                            <i class="fas fa-user"></i>
+                            <span>Профиль</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="grades.html" class="sidebar-nav__link">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Оценки</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="schedule.html" class="sidebar-nav__link">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Расписание</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="attendance.html" class="sidebar-nav__link">
+                            <i class="fas fa-clipboard-check"></i>
+                            <span>Посещаемость</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="assignments.html" class="sidebar-nav__link">
+                            <i class="fas fa-tasks"></i>
+                            <span>Задания</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="materials.html" class="sidebar-nav__link">
+                            <i class="fas fa-book"></i>
+                            <span>Материалы</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-nav__item">
+                        <a href="settings.html" class="sidebar-nav__link">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-footer__status">
+                    <div class="sidebar-footer__indicator sidebar-footer__indicator--online"></div>
+                    <span class="sidebar-footer__text">Онлайн</span>
+                </div>
+
+            </div>
+        </aside>
+
+        <div class="dashboard-content">
+            <div class="dashboard-header">
+                <h2 class="dashboard-header__title">Личный кабинет</h2>
+                <div class="dashboard-header__info">
+                    <div class="dashboard-header__date">
+                        <i class="fas fa-calendar"></i>
+                        <span id="currentDate">Понедельник, 1 мая 2023</span>
+                    </div>
+                    <div class="dashboard-header__time">
+                        <i class="fas fa-clock"></i>
+                        <span id="currentTime">14:30</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-welcome">
+                <div class="dashboard-welcome__content">
+                    <h3 class="dashboard-welcome__title">Добро пожаловать, Иван Иванович!</h3>
+                    <p class="dashboard-welcome__text">Вы вошли в личный кабинет системы учета успеваемости студентов. Здесь вы можете отслеживать свою успеваемость, посещаемость, расписание занятий и многое другое.</p>
+                    <div class="dashboard-welcome__actions">
+                        <a href="profile.html" class="btn btn--primary">
+                            <i class="fas fa-user"></i> Мой профиль
+                        </a>
+                        <a href="settings.html" class="btn btn--secondary">
+                            <i class="fas fa-cog"></i> Настройки
+                        </a>
+                    </div>
+                </div>
+                <div class="dashboard-welcome__image">
+                    <img src="images/dashboard-welcome.png.png" alt="Добро пожаловать">
+                </div>
+            </div>
+
+            <div class="dashboard-stats">
+                <div class="dashboard-stat">
+                    <div class="dashboard-stat__icon dashboard-stat__icon--primary">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="dashboard-stat__content">
+                        <div class="dashboard-stat__title">Средний балл</div>
+                        <div class="dashboard-stat__value">4.5</div>
+                        <div class="dashboard-stat__change dashboard-stat__change--up">
+                            <i class="fas fa-arrow-up"></i> 0.2
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-stat">
+                    <div class="dashboard-stat__icon dashboard-stat__icon--success">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="dashboard-stat__content">
+                        <div class="dashboard-stat__title">Посещаемость</div>
+                        <div class="dashboard-stat__value">92%</div>
+                        <div class="dashboard-stat__change dashboard-stat__change--down">
+                            <i class="fas fa-arrow-down"></i> 3%
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-stat">
+                    <div class="dashboard-stat__icon dashboard-stat__icon--warning">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="dashboard-stat__content">
+                        <div class="dashboard-stat__title">Задания</div>
+                        <div class="dashboard-stat__value">8</div>
+                        <div class="dashboard-stat__change dashboard-stat__change--up">
+                            <i class="fas fa-arrow-up"></i> 2
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-stat">
+                    <div class="dashboard-stat__icon dashboard-stat__icon--info">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="dashboard-stat__content">
+                        <div class="dashboard-stat__title">Рейтинг</div>
+                        <div class="dashboard-stat__value">15</div>
+                        <div class="dashboard-stat__change dashboard-stat__change--up">
+                            <i class="fas fa-arrow-up"></i> 5
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card dashboard-card--wide">
+                    <div class="dashboard-card__header">
+                        <h3 class="dashboard-card__title">Успеваемость по предметам</h3>
+                        <div class="dashboard-card__actions">
+                            <button class="dashboard-card__action" title="Обновить">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <button class="dashboard-card__action" title="Скачать">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <div class="dashboard-card__dropdown">
+                                <button class="dashboard-card__action">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dashboard-card__dropdown-menu">
+                                    <a href="#" class="dashboard-card__dropdown-item">Подробный отчет</a>
+                                    <a href="#" class="dashboard-card__dropdown-item">Печать</a>
+                                    <a href="#" class="dashboard-card__dropdown-item">Экспорт в Excel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card__body">
+                        <canvas id="gradesChart" height="250"></canvas>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-card__header">
+                        <h3 class="dashboard-card__title">Ближайшие занятия</h3>
+                        <div class="dashboard-card__actions">
+                            <a href="schedule.html" class="dashboard-card__link">Все занятия</a>
+                        </div>
+                    </div>
+                    <div class="dashboard-card__body">
+                        <div class="upcoming-classes">
+                            <div class="upcoming-class">
+                                <div class="upcoming-class__time">
+                                    <div class="upcoming-class__hour">09:00</div>
+                                    <div class="upcoming-class__duration">1ч 30м</div>
+                                </div>
+                                <div class="upcoming-class__content">
+                                    <div class="upcoming-class__subject">Математика</div>
+                                    <div class="upcoming-class__details">
+                                        <span class="upcoming-class__location"><i class="fas fa-map-marker-alt"></i> Ауд. 305</span>
+                                        <span class="upcoming-class__teacher"><i class="fas fa-user"></i> Петров П.П.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="upcoming-class upcoming-class--current">
+                                <div class="upcoming-class__time">
+                                    <div class="upcoming-class__hour">10:45</div>
+                                    <div class="upcoming-class__duration">1ч 30м</div>
+                                </div>
+                                <div class="upcoming-class__content">
+                                    <div class="upcoming-class__subject">Программирование</div>
+                                    <div class="upcoming-class__details">
+                                        <span class="upcoming-class__location"><i class="fas fa-map-marker-alt"></i> Ауд. 412</span>
+                                        <span class="upcoming-class__teacher"><i class="fas fa-user"></i> Сидоров С.С.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="upcoming-class">
+                                <div class="upcoming-class__time">
+                                    <div class="upcoming-class__hour">13:30</div>
+                                    <div class="upcoming-class__duration">1ч 30м</div>
+                                </div>
+                                <div class="upcoming-class__content">
+                                    <div class="upcoming-class__subject">Физика</div>
+                                    <div class="upcoming-class__details">
+                                        <span class="upcoming-class__location"><i class="fas fa-map-marker-alt"></i> Ауд. 208</span>
+                                        <span class="upcoming-class__teacher"><i class="fas fa-user"></i> Кузнецов К.К.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card">
+                    <div class="dashboard-card__header">
+                        <h3 class="dashboard-card__title">Задания на выполнение</h3>
+                        <div class="dashboard-card__actions">
+                            <a href="assignments.html" class="dashboard-card__link">Все задания</a>
+                        </div>
+                    </div>
+                    <div class="dashboard-card__body">
+                        <div class="assignments">
+                            <div class="assignment">
+                                <div class="assignment__status assignment__status--urgent"></div>
+                                <div class="assignment__content">
+                                    <div class="assignment__subject">Математика</div>
+                                    <div class="assignment__title">Контрольная работа №3</div>
+                                    <div class="assignment__deadline">Срок сдачи: сегодня</div>
+                                </div>
+                                <div class="assignment__actions">
+                                    <button class="assignment__action" title="Просмотр">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="assignment">
+                                <div class="assignment__status assignment__status--upcoming"></div>
+                                <div class="assignment__content">
+                                    <div class="assignment__subject">Программирование</div>
+                                    <div class="assignment__title">Лабораторная работа №5</div>
+                                    <div class="assignment__deadline">Срок сдачи: через 2 дня</div>
+                                </div>
+                                <div class="assignment__actions">
+                                    <button class="assignment__action" title="Просмотр">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="assignment">
+                                <div class="assignment__status assignment__status--upcoming"></div>
+                                <div class="assignment__content">
+                                    <div class="assignment__subject">Физика</div>
+                                    <div class="assignment__title">Реферат по теме "Квантовая механика"</div>
+                                    <div class="assignment__deadline">Срок сдачи: через 5 дней</div>
+                                </div>
+                                <div class="assignment__actions">
+                                    <button class="assignment__action" title="Просмотр">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="assignment">
+                                <div class="assignment__status assignment__status--completed"></div>
+                                <div class="assignment__content">
+                                    <div class="assignment__subject">Английский язык</div>
+                                    <div class="assignment__title">Эссе на тему "Образование будущего"</div>
+                                    <div class="assignment__deadline">Сдано: 2 дня назад</div>
+                                </div>
+                                <div class="assignment__actions">
+                                    <button class="assignment__action" title="Просмотр">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="dashboard-card__header">
+                        <h3 class="dashboard-card__title">Последние оценки</h3>
+                        <div class="dashboard-card__actions">
+                            <a href="grades.html" class="dashboard-card__link">Все оценки</a>
+                        </div>
+                    </div>
+                    <div class="dashboard-card__body">
+                        <div class="recent-grades">
+                            <div class="recent-grade">
+                                <div class="recent-grade__subject">Математика</div>
+                                <div class="recent-grade__details">
+                                    <div class="recent-grade__title">Контрольная работа №2</div>
+                                    <div class="recent-grade__date">28 апреля 2023</div>
+                                </div>
+                                <div class="recent-grade__score recent-grade__score--excellent">5</div>
+                            </div>
+                            <div class="recent-grade">
+                                <div class="recent-grade__subject">Физика</div>
+                                <div class="recent-grade__details">
+                                    <div class="recent-grade__title">Лабораторная работа №4</div>
+                                    <div class="recent-grade__date">25 апреля 2023</div>
+                                </div>
+                                <div class="recent-grade__score recent-grade__score--good">4</div>
+                            </div>
+                            <div class="recent-grade">
+                                <div class="recent-grade__subject">Программирование</div>
+                                <div class="recent-grade__details">
+                                    <div class="recent-grade__title">Практическое задание</div>
+                                    <div class="recent-grade__date">23 апреля 2023</div>
+                                </div>
+                                <div class="recent-grade__score recent-grade__score--excellent">5</div>
+                            </div>
+                            <div class="recent-grade">
+                                <div class="recent-grade__subject">Английский язык</div>
+                                <div class="recent-grade__details">
+                                    <div class="recent-grade__title">Тест по грамматике</div>
+                                    <div class="recent-grade__date">20 апреля 2023</div>
+                                </div>
+                                <div class="recent-grade__score recent-grade__score--satisfactory">3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card dashboard-card--wide">
+                    <div class="dashboard-card__header">
+                        <h3 class="dashboard-card__title">Посещаемость</h3>
+                        <div class="dashboard-card__actions">
+                            <div class="dashboard-card__period">
+                                <button class="dashboard-card__period-btn dashboard-card__period-btn--active">Неделя</button>
+                                <button class="dashboard-card__period-btn">Месяц</button>
+                                <button class="dashboard-card__period-btn">Семестр</button>
+                            </div>
+                            <a href="attendance.html" class="dashboard-card__link">Подробнее</a>
+                        </div>
+                    </div>
+                    <div class="dashboard-card__body">
+                        <canvas id="attendanceChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__column">
+                <div class="logo footer__logo">
+                    <img src="images/logo.png" alt="Логотип" class="logo__img">
+                    <h2 class="logo__title">СтудУспех</h2>
+                </div>
+                <p class="footer__text">Современная система учета успеваемости студентов для учебных заведений</p>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Навигация</h3>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="index.html" class="footer__link">Главная</a></li>
+                    <li class="footer__item"><a href="students.html" class="footer__link">Студенты</a></li>
+                    <li class="footer__item"><a href="performance.html" class="footer__link">Успеваемость</a></li>
+                    <li class="footer__item"><a href="reports.html" class="footer__link">Отчеты</a></li>
+                </ul>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Контакты</h3>
+                <address class="footer__address">
+                    <a href="https://www.google.com/maps/search/google/@62.2264806,-6.5902735,710m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+                       class="footer__contact"><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 123</a>
+                    <p>
+                        <a href="tel:+375293334192" class="footer__contact"><i class="fas fa-phone"></i> +7 (123) 456-78-90</a>
+                    <p>
+                        <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSBnNZrQqTZTGRwsGcdPxJxRfkcZZVgbcljJtphKFBHJwKglgmPvNsnnLPxWrHCHCcMgQZdB"
+                           class="footer__contact"><i class="fas fa-envelope"></i> info@studuspeh.ru</a>
+                </address>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Подписка на новости</h3>
+                <form class="footer__form">
+                    <label>
+                        <input type="email" class="footer__input" placeholder="Ваш email" required>
+                    </label>
+                    <button type="submit" class="footer__button">Подписаться</button>
+                </form>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copyright">© 2025 СтудУспех. Все права защищены.</p>
+
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+/* Materials Styles */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Materials Search */
+.materials-search {
+    display: flex;
+    max-width: 400px;
+    width: 100%;
+}
+
+.materials-search__input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.materials-search__input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.materials-search__button {
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.materials-search__button:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Materials Filters */
+.materials-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 15px;
+}
+
+.materials-filters__group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.materials-filters__label {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.materials-filters__select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Materials Tabs */
+.materials-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.materials-tabs__button {
+    padding: 10px 20px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.materials-tabs__button:hover {
+    border-color: var(--primary-color);
+}
+
+.materials-tabs__button--active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Materials Content */
+.materials-content {
+    display: none;
+}
+
+.materials-content--active {
+    display: block;
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Materials Section */
+.materials-section {
+    margin-bottom: 30px;
+}
+
+.materials-section__title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Materials Grid */
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Material Card */
+.material-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    display: flex;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.material-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.material-card__icon {
+    width: 60px;
+    height: 100%;
+    background-color: var(--primary-light);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.material-card__content {
+    flex-grow: 1;
+    padding: 15px;
+    min-width: 0;
+}
+
+.material-card__title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.material-card__details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.material-card__type {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.material-card__date {
+    opacity: 0.7;
+}
+
+.material-card__description {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.material-card__meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.material-card__actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border-left: 1px solid var(--border-color);
+}
+
+.material-card__action {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.material-card__action:hover {
+    background-color: var(--hover-color);
+    color: var(--primary-color);
+}
+
+.material-card__action--active {
+    color: var(--secondary-color);
+}
+
+.material-card__action--active:hover {
+    color: var(--secondary-dark);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .materials-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .materials-filters {
+        flex-direction: column;
+    }
+
+    .materials-filters__group {
+        width: 100%;
+    }
+
+    .materials-tabs {
+        flex-wrap: wrap;
+    }
+
+    .materials-tabs__button {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .materials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .material-card {
+        flex-direction: column;
+    }
+
+    .material-card__icon {
+        width: 100%;
+        height: 60px;
+    }
+
+    .material-card__actions {
+        flex-direction: row;
+        justify-content: flex-end;
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+    }
+}
