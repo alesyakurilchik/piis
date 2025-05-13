@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Посещаемость | Система учета успеваемости студентов</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/attendance-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="light-theme">
+<header class="header">
+    <div class="container header__container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Логотип" class="logo__img">
+            <h1 class="logo__title">СтудУспех</h1>
+        </div>
+        <nav class="nav">
+            <button class="nav__toggle" id="navToggle">
+                <span class="nav__toggle-line"></span>
+            </button>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="students.html" class="nav__link">Студенты</a></li>
+                <li class="nav__item"><a href="performance.html" class="nav__link">Успеваемость</a></li>
+                <li class="nav__item"><a href="dashboard.html" class="nav__link">Доска</a>
+                <li class="nav__item"><a href="reports.html" class="nav__link">Отчеты</a></li>
+                <li class="nav__item"><a href="schedule.html" class="nav__link">Расписание</a></li>
+                <li class="nav__item"><a href="attendance.html" class="nav__link nav__link--active">Посещаемость</a></li>
+                <li class="nav__item"><a href="login.html" class="nav__link nav__link--highlight">Войти</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--light"></i>
+            <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--dark"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+    <section class="page-header">
+        <div class="container">
+            <h2 class="page-title">Учет посещаемости</h2>
+            <div class="breadcrumbs">
+                <a href="index.html" class="breadcrumbs__link">Главная</a>
+                <span class="breadcrumbs__separator">/</span>
+                <span class="breadcrumbs__current">Посещаемость</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="attendance-section">
+        <div class="container">
+            <div class="attendance-controls">
+                <div class="attendance-filters">
+                    <div class="attendance-filters__group">
+                        <label for="facultyFilter" class="attendance-filters__label">Факультет:</label>
+                        <select id="facultyFilter" class="attendance-filters__select">
+                            <option value="all">Все факультеты</option>
+                            <option value="1">Информатика</option>
+                            <option value="2">Экономика</option>
+                            <option value="3">Юриспруденция</option>
+                        </select>
+                    </div>
+                    <div class="attendance-filters__group">
+                        <label for="courseFilter" class="attendance-filters__label">Курс:</label>
+                        <select id="courseFilter" class="attendance-filters__select">
+                            <option value="all">Все курсы</option>
+                            <option value="1">1 курс</option>
+                            <option value="2">2 курс</option>
+                            <option value="3">3 курс</option>
+                            <option value="4">4 курс</option>
+                        </select>
+                    </div>
+                    <div class="attendance-filters__group">
+                        <label for="groupFilter" class="attendance-filters__label">Группа:</label>
+                        <select id="groupFilter" class="attendance-filters__select">
+                            <option value="all">Все группы</option>
+                            <option value="101">Группа 101</option>
+                            <option value="102">Группа 102</option>
+                            <option value="201">Группа 201</option>
+                        </select>
+                    </div>
+                    <div class="attendance-filters__group">
+                        <label for="subjectFilter" class="attendance-filters__label">Предмет:</label>
+                        <select id="subjectFilter" class="attendance-filters__select">
+                            <option value="all">Все предметы</option>
+                            <option value="1">Математика</option>
+                            <option value="2">Программирование</option>
+                            <option value="3">Физика</option>
+                            <option value="4">Экономика</option>
+                        </select>
+                    </div>
+                    <div class="attendance-filters__group">
+                        <label for="dateFrom" class="attendance-filters__label">Период:</label>
+                        <div class="attendance-filters__date-range">
+                            <input type="date" id="dateFrom" class="attendance-filters__date">
+                            <span class="attendance-filters__date-separator">—</span>
+                            <label for="dateTo"></label><input type="date" id="dateTo" class="attendance-filters__date">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn--primary attendance-controls__apply">
+                    <i class="fas fa-filter"></i> Применить фильтры
+                </button>
+            </div>
+
+            <div class="attendance-tabs">
+                <button class="attendance-tabs__button attendance-tabs__button--active" data-tab="table">
+                    <i class="fas fa-table"></i> Таблица
+                </button>
+                <button class="attendance-tabs__button" data-tab="chart">
+                    <i class="fas fa-chart-bar"></i> Графики
+                </button>
+                <button class="attendance">  Графики
+                    </button>
+                    <button class="attendance-tabs__button" data-tab="report">
+                <i class="fas fa-file-alt"></i> Отчеты
+                </button>
+            </div>
+
+            <div class="attendance-content attendance-content--active" id="tableContent">
+                <div class="attendance-table-wrapper">
+                    <table class="attendance-table">
+                        <thead>
+                        <tr>
+                            <th class="attendance-table__header attendance-table__header--student">Студент</th>
+                            <th class="attendance-table__header">01.05</th>
+                            <th class="attendance-table__header">02.05</th>
+                            <th class="attendance-table__header">03.05</th>
+                            <th class="attendance-table__header">04.05</th>
+                            <th class="attendance-table__header">05.05</th>
+                            <th class="attendance-table__header">08.05</th>
+                            <th class="attendance-table__header">09.05</th>
+                            <th class="attendance-table__header">10.05</th>
+                            <th class="attendance-table__header">11.05</th>
+                            <th class="attendance-table__header">12.05</th>
+                            <th class="attendance-table__header attendance-table__header--total">Всего</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="attendance-table__row">
+                            <td class="attendance-table__cell attendance-table__cell--student">Иванов Иван Иванович</td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--absent"><i class="fas fa-times"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--holiday">П</td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--total">90%</td>
+                        </tr>
+                        <tr class="attendance-table__row">
+                            <td class="attendance-table__cell attendance-table__cell--student">Петров Петр Петрович</td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--absent"><i class="fas fa-times"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--absent"><i class="fas fa-times"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--holiday">П</td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--absent"><i class="fas fa-times"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--total">70%</td>
+                        </tr>
+                        <tr class="attendance-table__row">
+                            <td class="attendance-table__cell attendance-table__cell--student">Сидорова Анна Сергеевна</td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--holiday">П</td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--total">100%</td>
+                        </tr>
+                        <tr class="attendance-table__row">
+                            <td class="attendance-table__cell attendance-table__cell--student">Козлов Дмитрий Александрович</td>
+                            <td class="attendance-table__cell attendance-table__cell--absent"><i class="fas fa-times"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--absent"><i class="fas fa-times"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--holiday">П</td>
+                            <td class="attendance-table__cell attendance-table__cell--absent"><i class="fas fa-times"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--total">70%</td>
+                        </tr>
+                        <tr class="attendance-table__row">
+                            <td class="attendance-table__cell attendance-table__cell--student">Новикова Елена Владимировна</td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--absent"><i class="fas fa-times"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--holiday">П</td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--absent"><i class="fas fa-times"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--present"><i class="fas fa-check"></i></td>
+                            <td class="attendance-table__cell attendance-table__cell--total">80%</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="attendance-legend">
+                    <div class="attendance-legend__item">
+                        <div class="attendance-legend__icon attendance-legend__icon--present"><i class="fas fa-check"></i></div>
+                        <div class="attendance-legend__text">Присутствовал</div>
+                    </div>
+                    <div class="attendance-legend__item">
+                        <div class="attendance-legend__icon attendance-legend__icon--absent"><i class="fas fa-times"></i></div>
+                        <div class="attendance-legend__text">Отсутствовал</div>
+                    </div>
+                    <div class="attendance-legend__item">
+                        <div class="attendance-legend__icon attendance-legend__icon--holiday">П</div>
+                        <div class="attendance-legend__text">Праздничный день</div>
+                    </div>
+                </div>
+
+                <div class="attendance-actions">
+                    <button class="btn btn--secondary">
+                        <i class="fas fa-download"></i> Экспорт в Excel
+                    </button>
+                    <button class="btn btn--secondary">
+                        <i class="fas fa-print"></i> Печать
+                    </button>
+                    <button class="btn btn--primary">
+                        <i class="fas fa-edit"></i> Редактировать
+                    </button>
+                </div>
+            </div>
+
+            <div class="attendance-content" id="chartContent">
+                <div class="attendance-charts">
+                    <div class="attendance-chart-card">
+                        <div class="attendance-chart-card__header">
+                            <h3 class="attendance-chart-card__title">Посещаемость по студентам</h3>
+                            <div class="attendance-chart-card__actions">
+                                <button class="attendance-chart-card__action" title="Обновить">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="attendance-chart-card__action" title="Скачать">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="attendance-chart-card__body">
+                            <canvas id="studentAttendanceChart" height="300"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="attendance-chart-card">
+                        <div class="attendance-chart-card__header">
+                            <h3 class="attendance-chart-card__title">Посещаемость по предметам</h3>
+                            <div class="attendance-chart-card__actions">
+                                <button class="attendance-chart-card__action" title="Обновить">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="attendance-chart-card__action" title="Скачать">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="attendance-chart-card__body">
+                            <canvas id="subjectAttendanceChart" height="300"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="attendance-chart-card attendance-chart-card--full">
+                        <div class="attendance-chart-card__header">
+                            <h3 class="attendance-chart-card__title">Динамика посещаемости</h3>
+                            <div class="attendance-chart-card__actions">
+                                <div class="attendance-chart-card__period">
+                                    <button class="attendance-chart-card__period-btn attendance-chart-card__period-btn--active">Неделя</button>
+                                    <button class="attendance-chart-card__period-btn">Месяц</button>
+                                    <button class="attendance-chart-card__period-btn">Семестр</button>
+                                </div>
+                                <button class="attendance-chart-card__action" title="Обновить">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="attendance-chart-card__action" title="Скачать">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="attendance-chart-card__body">
+                            <canvas id="attendanceTrendChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="attendance-content" id="reportContent">
+                <div class="attendance-reports">
+                    <div class="attendance-report-card">
+                        <div class="attendance-report-card__icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="attendance-report-card__content">
+                            <h3 class="attendance-report-card__title">Отчет по студенту</h3>
+                            <p class="attendance-report-card__description">Детальный отчет о посещаемости выбранного студента за период</p>
+                            <div class="attendance-report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Создать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="attendance-report-card">
+                        <div class="attendance-report-card__icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="attendance-report-card__content">
+                            <h3 class="attendance-report-card__title">Отчет по группе</h3>
+                            <p class="attendance-report-card__description">Сводный отчет о посещаемости студентов группы</p>
+                            <div class="attendance-report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Создать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="attendance-report-card">
+                        <div class="attendance-report-card__icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="attendance-report-card__content">
+                            <h3 class="attendance-report-card__title">Отчет по предмету</h3>
+                            <p class="attendance-report-card__description">Отчет о посещаемости занятий по выбранному предмету</p>
+                            <div class="attendance-report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Создать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="attendance-report-card">
+                        <div class="attendance-report-card__icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="attendance-report-card__content">
+                            <h3 class="attendance-report-card__title">Аналитический отчет</h3>
+                            <p class="attendance-report-card__description">Аналитический отчет с графиками и статистикой</p>
+                            <div class="attendance-report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Создать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="attendance-report-builder">
+                    <h3 class="attendance-report-builder__title">Конструктор отчетов</h3>
+                    <p class="attendance-report-builder__description">Создайте собственный отчет, выбрав необходимые параметры</p>
+
+                    <div class="attendance-report-builder__form">
+                        <div class="form-group">
+                            <label for="reportName" class="form-label">Название отчета</label>
+                            <input type="text" id="reportName" class="form-input" placeholder="Введите название отчета">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group form-group--half">
+                                <label for="reportType" class="form-label">Тип отчета</label>
+                                <select id="reportType" class="form-select">
+                                    <option value="student">По студенту</option>
+                                    <option value="group">По группе</option>
+                                    <option value="subject">По предмету</option>
+                                    <option value="faculty">По факультету</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group--half">
+                                <label for="reportFormat" class="form-label">Формат отчета</label>
+                                <select id="reportFormat" class="form-select">
+                                    <option value="pdf">PDF</option>
+                                    <option value="excel">Excel</option>
+                                    <option value="word">Word</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group form-group--half">
+                                <label for="reportStartDate" class="form-label">Начало периода</label>
+                                <input type="date" id="reportStartDate" class="form-input">
+                            </div>
+                            <div class="form-group form-group--half">
+                                <label for="reportEndDate" class="form-label">Конец периода</label>
+                                <input type="date" id="reportEndDate" class="form-input">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Включить в отчет</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox">
+                                    <input type="checkbox" checked> Таблица посещаемости
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" checked> Графики
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"> Статистика
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"> Комментарии
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn btn--secondary">Отмена</button>
+                            <button class="btn btn--primary">Создать отчет</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__column">
+                <div class="logo footer__logo">
+                    <img src="images/logo.png" alt="Логотип" class="logo__img">
+                    <h2 class="logo__title">СтудУспех</h2>
+                </div>
+                <p class="footer__text">Современная система учета успеваемости студентов для учебных заведений</p>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Навигация</h3>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="index.html" class="footer__link">Главная</a></li>
+                    <li class="footer__item"><a href="students.html" class="footer__link">Студенты</a></li>
+                    <li class="footer__item"><a href="performance.html" class="footer__link">Успеваемость</a></li>
+                    <li class="footer__item"><a href="reports.html" class="footer__link">Отчеты</a></li>
+                </ul>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Контакты</h3>
+                <address class="footer__address">
+                    <a href="https://www.google.com/maps/search/google/@62.2264806,-6.5902735,710m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+                       class="footer__contact"><i class="fas fa-map-marker-alt"></i> г. Минск, ул. Примерная, д. 123</a>    <p>
+                        <a href="tel:+375293334192" class="footer__contact"><i class="fas fa-phone"></i> +7 (123) 456-78-90</a>
+                    <p>
+                        <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSBnNZrQqTZTGRwsGcdPxJxRfkcZZVgbcljJtphKFBHJwKglgmPvNsnnLPxWrHCHCcMgQZdB"
+                           class="footer__contact"><i class="fas fa-envelope"></i> info@studuspeh.ru</a>
+                </address>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Подписка на новости</h3>
+                <form class="footer__form">
+                    <label>
+                        <input type="email" class="footer__input" placeholder="Ваш email" required>
+                    </label>
+                    <button type="submit" class="footer__button">Подписаться</button>
+                </form>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copyright">© 2025 СтудУспех. Все права защищены.</p>
+
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script src="js/scripts.js"></script>
+</body>
+</html>
