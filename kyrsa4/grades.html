@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оценки | Система учета успеваемости студентов</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="grades-styles.css">
+    <link rel="stylesheet" href="dashboard-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="light-theme">
+<header class="header">
+    <div class="container header__container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Логотип" class="logo__img">
+        </div>
+        <nav class="nav">
+            <button class="nav__toggle" id="navToggle">
+                <span class="nav__toggle-line"></span>
+            </button>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="students.html" class="nav__link">Студенты</a></li>
+                <li class="nav__item"><a href="performance.html" class="nav__link">Успеваемость</a></li>
+                <li class="nav__item"><a href="dashboard.html" class="nav__link">Доска</a>
+                <li class="nav__item"><a href="reports.html" class="nav__link">Отчеты</a></li>
+                <li class="nav__item"><a href="schedule.html" class="nav__link">Расписание</a></li>
+                <li class="nav__item"><a href="attendance.html" class="nav__link">Посещаемость</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <div class="notifications">
+                <button class="notifications__button">
+                    <i class="fas fa-bell"></i>
+                    <span class="notifications__badge">3</span>
+                </button>
+                <div class="notifications__dropdown">
+                    <div class="notifications__header">
+                        <h3 class="notifications__title">Уведомления</h3>
+                        <button class="notifications__mark-all">Отметить все как прочитанные</button>
+                    </div>
+                    <div class="notifications__list">
+                        <div class="notification notification--unread">
+                            <div class="notification__icon notification__icon--info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Новая оценка</div>
+                                <div class="notification__text">Вам выставлена новая оценка по предмету "Математика"</div>
+                                <div class="notification__time">2 часа назад</div>
+                            </div>
+                        </div>
+                        <div class="notification notification--unread">
+                            <div class="notification__icon notification__icon--warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Пропуск занятия</div>
+                                <div class="notification__text">Зафиксирован пропуск занятия по предмету "Физика"</div>
+                                <div class="notification__time">Вчера</div>
+                            </div>
+                        </div>
+                        <div class="notification notification--unread">
+                            <div class="notification__icon notification__icon--success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Изменение расписания</div>
+                                <div class="notification__text">Изменено расписание на следующую неделю</div>
+                                <div class="notification__time">2 дня назад</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notifications__footer">
+                        <a href="#" class="notifications__all">Показать все уведомления</a>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile">
+                <button class="user-profile__button">
+                    <img src="images/user-avatar..jpg" alt="Аватар пользователя" class="user-profile__avatar">
+                    <span class="user-profile__name">Иванов И.И.</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="user-profile__dropdown">
+                    <a href="profile.html" class="user-profile__link">
+                        <i class="fas fa-user"></i> Мой профиль
+                    </a>
+                    <a href="settings.html" class="user-profile__link">
+                        <i class="fas fa-cog"></i> Настройки
+                    </a>
+
+                    <div class="user-profile__divider"></div>
+                    <a href="index.html" class="user-profile__link user-profile__link--logout">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </a>
+                </div>
+            </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--light"></i>
+            <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--dark"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <ul class="sidebar-nav__list">
+                    <li class="sidebar-nav__item">
+                        <a href="dashboard.html" class="sidebar-nav__link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Обзор</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="profile.html" class="sidebar-nav__link">
+                            <i class="fas fa-user"></i>
+                            <span>Профиль</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item sidebar-nav__item--active">
+                        <a href="grades.html" class="sidebar-nav__link">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Оценки</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="schedule.html" class="sidebar-nav__link">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Расписание</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="attendance.html" class="sidebar-nav__link">
+                            <i class="fas fa-clipboard-check"></i>
+                            <span>Посещаемость</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="assignments.html" class="sidebar-nav__link">
+                            <i class="fas fa-tasks"></i>
+                            <span>Задания</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="materials.html" class="sidebar-nav__link">
+                            <i class="fas fa-book"></i>
+                            <span>Материалы</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-nav__item">
+                        <a href="settings.html" class="sidebar-nav__link">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-footer__status">
+                    <div class="sidebar-footer__indicator sidebar-footer__indicator--online"></div>
+                    <span class="sidebar-footer__text">Онлайн</span>
+                </div>
+
+            </div>
+        </aside>
+
+        <div class="dashboard-content">
+            <div class="dashboard-header">
+                <h2 class="dashboard-header__title">Оценки</h2>
+                <div class="dashboard-header__filters">
+                    <div class="dashboard-header__filter">
+                        <label for="semesterSelect" class="dashboard-header__filter-label">Семестр:</label>
+                        <select id="semesterSelect" class="dashboard-header__filter-select">
+                            <option value="current">Текущий семестр</option>
+                            <option value="1">1 семестр</option>
+                            <option value="2">2 семестр</option>
+                            <option value="3">3 семестр</option>
+                        </select>
+                    </div>
+                    <div class="dashboard-header__filter">
+                        <label for="yearSelect" class="dashboard-header__filter-label">Учебный год:</label>
+                        <select id="yearSelect" class="dashboard-header__filter-select">
+                            <option value="current">2023-2024</option>
+                            <option value="2022">2022-2023</option>
+                            <option value="2021">2021-2022</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grades-summary">
+                <div class="grades-summary__card">
+                    <div class="grades-summary__icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="grades-summary__content">
+                        <div class="grades-summary__title">Средний балл</div>
+                        <div class="grades-summary__value">4.5</div>
+                    </div>
+                </div>
+                <div class="grades-summary__card">
+                    <div class="grades-summary__icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="grades-summary__content">
+                        <div class="grades-summary__title">Рейтинг в группе</div>
+                        <div class="grades-summary__value">3 из 25</div>
+                    </div>
+                </div>
+                <div class="grades-summary__card">
+                    <div class="grades-summary__icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="grades-summary__content">
+                        <div class="grades-summary__title">Лучший предмет</div>
+                        <div class="grades-summary__value">Программирование (5.0)</div>
+                    </div>
+                </div>
+                <div class="grades-summary__card">
+                    <div class="grades-summary__icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="grades-summary__content">
+                        <div class="grades-summary__title">Требует внимания</div>
+                        <div class="grades-summary__value">Физика (3.5)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grades-chart-container">
+                <div class="grades-chart-card">
+                    <div class="grades-chart-card__header">
+                        <h3 class="grades-chart-card__title">Распределение оценок по предметам</h3>
+                        <div class="grades-chart-card__actions">
+                            <button class="grades-chart-card__action" title="Обновить">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <button class="grades-chart-card__action" title="Скачать">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grades-chart-card__body">
+                        <canvas id="gradesDistributionChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grades-table-container">
+                <div class="grades-table-header">
+                    <h3 class="grades-table-header__title">Детальная информация по предметам</h3>
+                    <div class="grades-table-header__actions">
+                        <button class="btn btn--secondary">
+                            <i class="fas fa-download"></i> Экспорт
+                        </button>
+                        <button class="btn btn--secondary">
+                            <i class="fas fa-print"></i> Печать
+                        </button>
+                    </div>
+                </div>
+                <div class="grades-table-wrapper">
+                    <table class="grades-table">
+                        <thead>
+                        <tr>
+                            <th class="grades-table__header">Предмет</th>
+                            <th class="grades-table__header">Преподаватель</th>
+                            <th class="grades-table__header">Текущий балл</th>
+                            <th class="grades-table__header">Контрольные работы</th>
+                            <th class="grades-table__header">Лабораторные работы</th>
+                            <th class="grades-table__header">Домашние задания</th>
+                            <th class="grades-table__header">Экзамен/Зачет</th>
+                            <th class="grades-table__header">Итоговая оценка</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="grades-table__row">
+                            <td class="grades-table__cell">
+                                <div class="grades-table__subject">Математика</div>
+                                <div class="grades-table__credits">5 кредитов</div>
+                            </td>
+                            <td class="grades-table__cell">Петров П.П.</td>
+                            <td class="grades-table__cell grades-table__cell--score">4.2</td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <span class="grades-table__mark grades-table__mark--good">4</span>
+                            </td>
+                            <td class="grades-table__cell grades-table__cell--final">
+                                <span class="grades-table__final-mark grades-table__final-mark--good">4</span>
+                            </td>
+                        </tr>
+                        <tr class="grades-table__row">
+                            <td class="grades-table__cell">
+                                <div class="grades-table__subject">Программирование</div>
+                                <div class="grades-table__credits">6 кредитов</div>
+                            </td>
+                            <td class="grades-table__cell">Сидоров С.С.</td>
+                            <td class="grades-table__cell grades-table__cell--score">5.0</td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                            </td>
+                            <td class="grades-table__cell grades-table__cell--final">
+                                <span class="grades-table__final-mark grades-table__final-mark--excellent">5</span>
+                            </td>
+                        </tr>
+                        <tr class="grades-table__row">
+                            <td class="grades-table__cell">
+                                <div class="grades-table__subject">Физика</div>
+                                <div class="grades-table__credits">4 кредита</div>
+                            </td>
+                            <td class="grades-table__cell">Кузнецов К.К.</td>
+                            <td class="grades-table__cell grades-table__cell--score">3.5</td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--satisfactory">3</span>
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--satisfactory">3</span>
+                                    <span class="grades-table__mark grades-table__mark--satisfactory">3</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                    <span class="grades-table__mark grades-table__mark--satisfactory">3</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <span class="grades-table__mark grades-table__mark--good">4</span>
+                            </td>
+                            <td class="grades-table__cell grades-table__cell--final">
+                                <span class="grades-table__final-mark grades-table__final-mark--satisfactory">3</span>
+                            </td>
+                        </tr>
+                        <tr class="grades-table__row">
+                            <td class="grades-table__cell">
+                                <div class="grades-table__subject">Английский язык</div>
+                                <div class="grades-table__credits">3 кредита</div>
+                            </td>
+                            <td class="grades-table__cell">Иванова И.И.</td>
+                            <td class="grades-table__cell grades-table__cell--score">4.7</td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                            </td>
+                            <td class="grades-table__cell grades-table__cell--final">
+                                <span class="grades-table__final-mark grades-table__final-mark--excellent">5</span>
+                            </td>
+                        </tr>
+                        <tr class="grades-table__row">
+                            <td class="grades-table__cell">
+                                <div class="grades-table__subject">История</div>
+                                <div class="grades-table__credits">2 кредита</div>
+                            </td>
+                            <td class="grades-table__cell">Николаев Н.Н.</td>
+                            <td class="grades-table__cell grades-table__cell--score">4.3</td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--none">-</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <span class="grades-table__mark grades-table__mark--good">4</span>
+                            </td>
+                            <td class="grades-table__cell grades-table__cell--final">
+                                <span class="grades-table__final-mark grades-table__final-mark--good">4</span>
+                            </td>
+                        </tr>
+                        <tr class="grades-table__row">
+                            <td class="grades-table__cell">
+                                <div class="grades-table__subject">Экономика</div>
+                                <div class="grades-table__credits">3 кредита</div>
+                            </td>
+                            <td class="grades-table__cell">Смирнова С.С.</td>
+                            <td class="grades-table__cell grades-table__cell--score">4.8</td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--good">4</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <div class="grades-table__marks">
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                    <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                                </div>
+                            </td>
+                            <td class="grades-table__cell">
+                                <span class="grades-table__mark grades-table__mark--excellent">5</span>
+                            </td>
+                            <td class="grades-table__cell grades-table__cell--final">
+                                <span class="grades-table__final-mark grades-table__final-mark--excellent">5</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grades-history">
+                <div class="grades-history__header">
+                    <h3 class="grades-history__title">История успеваемости</h3>
+                    <div class="grades-history__tabs">
+                        <button class="grades-history__tab grades-history__tab--active" data-tab="semester">По семестрам</button>
+                        <button class="grades-history__tab" data-tab="subject">По предметам</button>
+                    </div>
+                </div>
+                <div class="grades-history__content grades-history__content--active" id="semesterContent">
+                    <div class="grades-history__chart-container">
+                        <canvas id="semesterHistoryChart" height="250"></canvas>
+                    </div>
+                </div>
+                <div class="grades-history__content" id="subjectContent">
+                    <div class="grades-history__chart-container">
+                        <canvas id="subjectHistoryChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__column">
+                <div class="logo footer__logo">
+                    <img src="images/logo.png" alt="Логотип" class="logo__img">
+                    <h2 class="logo__title">СтудУспех</h2>
+                </div>
+                <p class="footer__text">Современная система учета успеваемости студентов для учебных заведений</p>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Навигация</h3>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="index.html" class="footer__link">Главная</a></li>
+                    <li class="footer__item"><a href="students.html" class="footer__link">Студенты</a></li>
+                    <li class="footer__item"><a href="performance.html" class="footer__link">Успеваемость</a></li>
+                    <li class="footer__item"><a href="reports.html" class="footer__link">Отчеты</a></li>
+                </ul>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Контакты</h3>
+                <address class="footer__address">
+                    <a href="https://www.google.com/maps/search/google/@62.2264806,-6.5902735,710m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+                       class="footer__contact"><i class="fas fa-map-marker-alt"></i> г. Минск, ул. Примерная, д. 123</a>
+                    <p>
+                        <a href="tel:+375293334192" class="footer__contact"><i class="fas fa-phone"></i> +7 (123) 456-78-90</a>
+                    <p>
+                        <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSBnNZrQqTZTGRwsGcdPxJxRfkcZZVgbcljJtphKFBHJwKglgmPvNsnnLPxWrHCHCcMgQZdB"
+                           class="footer__contact"><i class="fas fa-envelope"></i> info@studuspeh.ru</a>
+                </address>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Подписка на новости</h3>
+                <form class="footer__form">
+                    <label>
+                        <input type="email" class="footer__input" placeholder="Ваш email" required>
+                    </label>
+                    <button type="submit" class="footer__button">Подписаться</button>
+                </form>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copyright">© 2025 СтудУспех. Все права защищены.</p>
+
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script src="scripts.js"></script>
+<script>
+    // Grades Distribution Chart
+    const gradesDistributionChart = document.getElementById('gradesDistributionChart');
+    if (gradesDistributionChart) {
+        new Chart(gradesDistributionChart, {
+            type: 'bar',
+            data: {
+                labels: ['Математика', 'Программирование', 'Физика', 'Английский язык', 'История', 'Экономика'],
+                datasets: [{
+                    label: 'Текущий балл',
+                    data: [4.2, 5.0, 3.5, 4.7, 4.3, 4.8],
+                    backgroundColor: [
+                        'rgba(74, 107, 175, 0.7)',
+                        'rgba(76, 175, 80, 0.7)',
+                        'rgba(255, 152, 0, 0.7)',
+                        'rgba(33, 150, 243, 0.7)',
+                        'rgba(156, 39, 176, 0.7)',
+                        'rgba(255, 112, 67, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(74, 107, 175, 1)',
+                        'rgba(76, 175, 80, 1)',
+                        'rgba(255, 152, 0, 1)',
+                        'rgba(33, 150, 243, 1)',
+                        'rgba(156, 39, 176, 1)',
+                        'rgba(255, 112, 67, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 5
+                    }
+                }
+            }
+        });
+    }
+
+    // Semester History Chart
+    const semesterHistoryChart = document.getElementById('semesterHistoryChart');
+    if (semesterHistoryChart) {
+        new Chart(semesterHistoryChart, {
+            type: 'line',
+            data: {
+                labels: ['1 семестр', '2 семестр', '3 семестр', 'Текущий'],
+                datasets: [{
+                    label: 'Средний балл',
+                    data: [4.1, 4.3, 4.4, 4.5],
+                    backgroundColor: 'rgba(74, 107, 175, 0.2)',
+                    borderColor: 'rgba(74, 107, 175, 1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 3,
+                        max: 5
+                    }
+                }
+            }
+        });
+    }
+
+    // Subject History Chart
+    const subjectHistoryChart = document.getElementById('subjectHistoryChart');
+    if (subjectHistoryChart) {
+        new Chart(subjectHistoryChart, {
+            type: 'line',
+            data: {
+                labels: ['1 семестр', '2 семестр', '3 семестр', 'Текущий'],
+                datasets: [
+                    {
+                        label: 'Математика',
+                        data: [3.8, 4.0, 4.1, 4.2],
+                        borderColor: 'rgba(74, 107, 175, 1)',
+                        backgroundColor: 'rgba(74, 107, 175, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Программирование',
+                        data: [4.5, 4.7, 4.8, 5.0],
+                        borderColor: 'rgba(76, 175, 80, 1)',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Физика',
+                        data: [3.2, 3.3, 3.4, 3.5],
+                        borderColor: 'rgba(255, 152, 0, 1)',
+                        backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 3,
+                        max: 5
+                    }
+                }
+            }
+        });
+    }
+
+    // Grades History Tabs
+    const historyTabs = document.querySelectorAll('.grades-history__tab');
+    if (historyTabs.length > 0) {
+        historyTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                historyTabs.forEach(t => t.classList.remove('grades-history__tab--active'));
+
+                // Add active class to clicked tab
+                tab.classList.add('grades-history__tab--active');
+
+                // Hide all content
+                const contents = document.querySelectorAll('.grades-history__content');
+                contents.forEach(content => content.classList.remove('grades-history__content--active'));
+
+                // Show corresponding content
+                const contentId = tab.getAttribute('data-tab') + 'Content';
+                document.getElementById(contentId).classList.add('grades-history__content--active');
+            });
+        });
+    }
+</script>
+</body>
+</html>

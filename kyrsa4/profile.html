@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль | Система учета успеваемости студентов</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile-styles.css">
+    <link rel="stylesheet" href="dashboard-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-theme">
+<header class="header">
+    <div class="container header__container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Логотип" class="logo__img">
+        </div>
+        <nav class="nav">
+            <button class="nav__toggle" id="navToggle">
+                <span class="nav__toggle-line"></span>
+            </button>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="students.html" class="nav__link">Студенты</a></li>
+                <li class="nav__item"><a href="performance.html" class="nav__link">Успеваемость</a></li>
+                <li class="nav__item"><a href="reports.html" class="nav__link">Отчеты</a></li>
+                <li class="nav__item"><a href="dashboard.html" class="nav__link">Доска</a>
+                <li class="nav__item"><a href="schedule.html" class="nav__link">Расписание</a></li>
+                <li class="nav__item"><a href="attendance.html" class="nav__link">Посещаемость</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <div class="notifications">
+                <button class="notifications__button">
+                    <i class="fas fa-bell"></i>
+                    <span class="notifications__badge">3</span>
+                </button>
+                <div class="notifications__dropdown">
+                    <div class="notifications__header">
+                        <h3 class="notifications__title">Уведомления</h3>
+                        <button class="notifications__mark-all">Отметить все как прочитанные</button>
+                    </div>
+                    <div class="notifications__list">
+                        <div class="notification notification--unread">
+                            <div class="notification__icon notification__icon--info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Новая оценка</div>
+                                <div class="notification__text">Вам выставлена новая оценка по предмету "Математика"</div>
+                                <div class="notification__time">2 часа назад</div>
+                            </div>
+                        </div>
+                        <div class="notification notification--unread">
+                            <div class="notification__icon notification__icon--warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Пропуск занятия</div>
+                                <div class="notification__text">Зафиксирован пропуск занятия по предмету "Физика"</div>
+                                <div class="notification__time">Вчера</div>
+                            </div>
+                        </div>
+                        <div class="notification notification--unread">
+                            <div class="notification__icon notification__icon--success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="notification__content">
+                                <div class="notification__title">Изменение расписания</div>
+                                <div class="notification__text">Изменено расписание на следующую неделю</div>
+                                <div class="notification__time">2 дня назад</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notifications__footer">
+                        <a href="#" class="notifications__all">Показать все уведомления</a>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile">
+                <button class="user-profile__button">
+                    <img src="images/user-avatar..jpg" alt="Аватар пользователя" class="user-profile__avatar">
+                    <span class="user-profile__name">Иванов И.И.</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="user-profile__dropdown">
+                    <a href="profile.html" class="user-profile__link">
+                        <i class="fas fa-user"></i> Мой профиль
+                    </a>
+                    <a href="settings.html" class="user-profile__link">
+                        <i class="fas fa-cog"></i> Настройки
+                    </a>
+
+                    <div class="user-profile__divider"></div>
+                    <a href="index.html" class="user-profile__link user-profile__link--logout">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </a>
+                </div>
+            </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--light"></i>
+            <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--dark"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <ul class="sidebar-nav__list">
+                    <li class="sidebar-nav__item">
+                        <a href="dashboard.html" class="sidebar-nav__link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Обзор</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item sidebar-nav__item--active">
+                        <a href="profile.html" class="sidebar-nav__link">
+                            <i class="fas fa-user"></i>
+                            <span>Профиль</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="grades.html" class="sidebar-nav__link">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Оценки</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="schedule.html" class="sidebar-nav__link">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Расписание</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="attendance.html" class="sidebar-nav__link">
+                            <i class="fas fa-clipboard-check"></i>
+                            <span>Посещаемость</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="assignments.html" class="sidebar-nav__link">
+                            <i class="fas fa-tasks"></i>
+                            <span>Задания</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav__item">
+                        <a href="materials.html" class="sidebar-nav__link">
+                            <i class="fas fa-book"></i>
+                            <span>Материалы</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-nav__item">
+                        <a href="settings.html" class="sidebar-nav__link">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-footer__status">
+                    <div class="sidebar-footer__indicator sidebar-footer__indicator--online"></div>
+                    <span class="sidebar-footer__text">Онлайн</span>
+                </div>
+
+            </div>
+        </aside>
+
+        <div class="dashboard-content">
+            <div class="dashboard-header">
+                <h2 class="dashboard-header__title">Профиль студента</h2>
+                <div class="dashboard-header__actions">
+                    <button class="btn btn--secondary">
+                        <i class="fas fa-print"></i> Печать
+                    </button>
+                    <button class="btn btn--primary">
+                        <i class="fas fa-edit"></i> Редактировать
+                    </button>
+                </div>
+            </div>
+
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="images/user-avatar..jpg" alt="Аватар пользователя" class="profile-avatar__img">
+                        <button class="profile-avatar__change">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-info">
+                        <h3 class="profile-info__name">Иванов Иван Иванович</h3>
+                        <div class="profile-info__status">Студент</div>
+                        <div class="profile-info__details">
+                            <div class="profile-info__detail">
+                                <i class="fas fa-graduation-cap"></i> Информатика, 2 курс
+                            </div>
+                            <div class="profile-info__detail">
+                                <i class="fas fa-users"></i> Группа 101
+                            </div>
+                            <div class="profile-info__detail">
+                                <i class="fas fa-id-card"></i> Студенческий билет: 12345
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <div class="profile-stat__value">4.5</div>
+                            <div class="profile-stat__label">Средний балл</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat__value">92%</div>
+                            <div class="profile-stat__label">Посещаемость</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat__value">15</div>
+                            <div class="profile-stat__label">Рейтинг</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-tabs">
+                    <button class="profile-tabs__button profile-tabs__button--active" data-tab="personal">
+                        Личная информация
+                    </button>
+                    <button class="profile-tabs__button" data-tab="academic">
+                        Учебная информация
+                    </button>
+                    <button class="profile-tabs__button" data-tab="documents">
+                        Документы
+                    </button>
+                    <button class="profile-tabs__button" data-tab="achievements">
+                        Достижения
+                    </button>
+                </div>
+
+                <div class="profile-content profile-content--active" id="personalContent">
+                    <div class="profile-section">
+                        <h4 class="profile-section__title">Личная информация</h4>
+                        <div class="profile-section__content">
+                            <div class="profile-field">
+                                <div class="profile-field__label">Полное имя</div>
+                                <div class="profile-field__value">Иванов Иван Иванович</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Дата рождения</div>
+                                <div class="profile-field__value">01.01.2000</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Пол</div>
+                                <div class="profile-field__value">Мужской</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Гражданство</div>
+                                <div class="profile-field__value">Российская Федерация</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h4 class="profile-section__title">Контактная информация</h4>
+                        <div class="profile-section__content">
+                            <div class="profile-field">
+                                <div class="profile-field__label">Email</div>
+                                <div class="profile-field__value">ivanov@example.com</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Телефон</div>
+                                <div class="profile-field__value">+7 (123) 456-78-90</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Адрес</div>
+                                <div class="profile-field__value">г. Москва, ул. Примерная, д. 123, кв. 45</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h4 class="profile-section__title">Дополнительная информация</h4>
+                        <div class="profile-section__content">
+                            <div class="profile-field">
+                                <div class="profile-field__label">Интересы</div>
+                                <div class="profile-field__value">Программирование, спорт, музыка</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">О себе</div>
+                                <div class="profile-field__value">
+                                    Студент 2 курса факультета информатики. Увлекаюсь программированием и разработкой веб-приложений.
+                                    Активно участвую в студенческих мероприятиях и научных конференциях.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-content" id="academicContent">
+                    <div class="profile-section">
+                        <h4 class="profile-section__title">Учебная информация</h4>
+                        <div class="profile-section__content">
+                            <div class="profile-field">
+                                <div class="profile-field__label">Факультет</div>
+                                <div class="profile-field__value">Информатика</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Специальность</div>
+                                <div class="profile-field__value">Программная инженерия</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Курс</div>
+                                <div class="profile-field__value">2</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Группа</div>
+                                <div class="profile-field__value">101</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Форма обучения</div>
+                                <div class="profile-field__value">Очная</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Год поступления</div>
+                                <div class="profile-field__value">2022</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h4 class="profile-section__title">Академическая успеваемость</h4>
+                        <div class="profile-section__content">
+                            <div class="profile-field">
+                                <div class="profile-field__label">Средний балл</div>
+                                <div class="profile-field__value">4.5</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Рейтинг в группе</div>
+                                <div class="profile-field__value">3 из 25</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Посещаемость</div>
+                                <div class="profile-field__value">92%</div>
+                            </div>
+                            <div class="profile-field">
+                                <div class="profile-field__label">Стипендия</div>
+                                <div class="profile-field__value">Повышенная академическая</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-content" id="documentsContent">
+                    <div class="profile-section">
+                        <h4 class="profile-section__title">Документы</h4>
+                        <div class="profile-section__content">
+                            <div class="document-list">
+                                <div class="document-item">
+                                    <div class="document-item__icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-item__info">
+                                        <div class="document-item__name">Паспорт</div>
+                                        <div class="document-item__details">Загружен 01.09.2022</div>
+                                    </div>
+                                    <div class="document-item__actions">
+                                        <button class="document-item__action" title="Просмотр">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="document-item__action" title="Скачать">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="document-item">
+                                    <div class="document-item__icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-item__info">
+                                        <div class="document-item__name">Аттестат о среднем образовании</div>
+                                        <div class="document-item__details">Загружен 01.09.2022</div>
+                                    </div>
+                                    <div class="document-item__actions">
+                                        <button class="document-item__action" title="Просмотр">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="document-item__action" title="Скачать">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="document-item">
+                                    <div class="document-item__icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-item__info">
+                                        <div class="document-item__name">Медицинская справка</div>
+                                        <div class="document-item__details">Загружен 01.09.2022</div>
+                                    </div>
+                                    <div class="document-item__actions">
+                                        <button class="document-item__action" title="Просмотр">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="document-item__action" title="Скачать">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="document-item">
+                                    <div class="document-item__icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-item__info">
+                                        <div class="document-item__name">Договор об обучении</div>
+                                        <div class="document-item__details">Загружен 01.09.2022</div>
+                                    </div>
+                                    <div class="document-item__actions">
+                                        <button class="document-item__action" title="Просмотр">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="document-item__action" title="Скачать">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="document-upload">
+                                <button class="btn btn--primary">
+                                    <i class="fas fa-upload"></i> Загрузить документ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-content" id="achievementsContent">
+                    <div class="profile-section">
+                        <h4 class="profile-section__title">Достижения</h4>
+                        <div class="profile-section__content">
+                            <div class="achievements-list">
+                                <div class="achievement-item">
+                                    <div class="achievement-item__icon">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="achievement-item__info">
+                                        <div class="achievement-item__name">Победитель олимпиады по программированию</div>
+                                        <div class="achievement-item__details">Университетская олимпиада, 2023 год</div>
+                                    </div>
+                                    <div class="achievement-item__badge">
+                                        <i class="fas fa-medal"></i>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-item__icon">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                    <div class="achievement-item__info">
+                                        <div class="achievement-item__name">Участник научной конференции</div>
+                                        <div class="achievement-item__details">Международная конференция по информационным технологиям, 2023 год</div>
+                                    </div>
+                                    <div class="achievement-item__badge">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-item__icon">
+                                        <i class="fas fa-award"></i>
+                                    </div>
+                                    <div class="achievement-item__info">
+                                        <div class="achievement-item__name">Лучший проект семестра</div>
+                                        <div class="achievement-item__details">Курс "Разработка веб-приложений", 2023 год</div>
+                                    </div>
+                                    <div class="achievement-item__badge">
+                                        <i class="fas fa-medal"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__column">
+                <div class="logo footer__logo">
+                    <img src="images/logo.png" alt="Логотип" class="logo__img">
+                    <h2 class="logo__title">СтудУспех</h2>
+                </div>
+                <p class="footer__text">Современная система учета успеваемости студентов для учебных заведений</p>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Навигация</h3>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="index.html" class="footer__link">Главная</a></li>
+                    <li class="footer__item"><a href="students.html" class="footer__link">Студенты</a></li>
+                    <li class="footer__item"><a href="performance.html" class="footer__link">Успеваемость</a></li>
+                    <li class="footer__item"><a href="reports.html" class="footer__link">Отчеты</a></li>
+                </ul>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Контакты</h3>
+                <address class="footer__address">
+                    <a href="https://www.google.com/maps/search/google/@62.2264806,-6.5902735,710m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+                       class="footer__contact"><i class="fas fa-map-marker-alt"></i> г. Минск, ул. Примерная, д. 123</a>
+                    <p>
+                        <a href="tel:+375293334192" class="footer__contact"><i class="fas fa-phone"></i> +7 (123) 456-78-90</a>
+                    <p>
+                        <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSBnNZrQqTZTGRwsGcdPxJxRfkcZZVgbcljJtphKFBHJwKglgmPvNsnnLPxWrHCHCcMgQZdB"
+                           class="footer__contact"><i class="fas fa-envelope"></i> info@studuspeh.ru</a>
+                </address>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Подписка на новости</h3>
+                <form class="footer__form">
+                    <label>
+                        <input type="email" class="footer__input" placeholder="Ваш email" required>
+                    </label>
+                    <button type="submit" class="footer__button">Подписаться</button>
+                </form>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copyright">© 2025 СтудУспех. Все права защищены.</p>
+
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script src="scripts.js"></script>
+</body>
+</html>

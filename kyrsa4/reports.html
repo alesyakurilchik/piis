@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчеты | Система учета успеваемости студентов</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-theme">
+<header class="header">
+    <div class="container header__container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Логотип" class="logo__img">
+            <h1 class="logo__title">СтудУспех</h1>
+        </div>
+        <nav class="nav">
+            <button class="nav__toggle" id="navToggle">
+                <span class="nav__toggle-line"></span>
+            </button>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="students.html" class="nav__link">Студенты</a></li>
+                <li class="nav__item"><a href="performance.html" class="nav__link">Успеваемость</a></li>
+                <li class="nav__item"><a href="dashboard.html" class="nav__link">Доска</a>
+                <li class="nav__item"><a href="reports.html" class="nav__link nav__link--active">Отчеты</a></li>
+                <li class="nav__item"><a href="login.html" class="nav__link nav__link--highlight">Войти</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--light"></i>
+            <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--dark"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+    <section class="page-header">
+        <div class="container">
+            <h2 class="page-title">Отчеты</h2>
+            <div class="breadcrumbs">
+                <a href="index.html" class="breadcrumbs__link">Главная</a>
+                <span class="breadcrumbs__separator">/</span>
+                <span class="breadcrumbs__current">Отчеты</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="reports-section">
+        <div class="container">
+            <div class="reports-tabs">
+                <button class="reports-tabs__button reports-tabs__button--active" data-tab="standard">
+                    <i class="fas fa-file-alt"></i> Стандартные отчеты
+                </button>
+                <button class="reports-tabs__button" data-tab="custom">
+                    <i class="fas fa-sliders-h"></i> Настраиваемые отчеты
+                </button>
+                <button class="reports-tabs__button" data-tab="scheduled">
+                    <i class="fas fa-calendar-check"></i> Запланированные отчеты
+                </button>
+            </div>
+
+            <div class="reports-content reports-content--active" id="standardReports">
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <div class="report-card__icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="report-card__content">
+                            <h3 class="report-card__title">Успеваемость студентов</h3>
+                            <p class="report-card__description">Отчет по успеваемости студентов за выбранный период</p>
+                            <div class="report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Просмотр
+                                </button>
+                                <button class="btn btn--small btn--secondary">
+                                    <i class="fas fa-download"></i> Скачать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card__icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="report-card__content">
+                            <h3 class="report-card__title">Успеваемость по группам</h3>
+                            <p class="report-card__description">Сравнительный анализ успеваемости по группам</p>
+                            <div class="report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Просмотр
+                                </button>
+                                <button class="btn btn--small btn--secondary">
+                                    <i class="fas fa-download"></i> Скачать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card__icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="report-card__content">
+                            <h3 class="report-card__title">Успеваемость по предметам</h3>
+                            <p class="report-card__description">Анализ успеваемости по различным предметам</p>
+                            <div class="report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Просмотр
+                                </button>
+                                <button class="btn btn--small btn--secondary">
+                                    <i class="fas fa-download"></i> Скачать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card__icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="report-card__content">
+                            <h3 class="report-card__title">Динамика успеваемости</h3>
+                            <p class="report-card__description">Отчет по динамике успеваемости за несколько периодов</p>
+                            <div class="report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Просмотр
+                                </button>
+                                <button class="btn btn--small btn--secondary">
+                                    <i class="fas fa-download"></i> Скачать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card__icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="report-card__content">
+                            <h3 class="report-card__title">Рейтинг студентов</h3>
+                            <p class="report-card__description">Рейтинг студентов по успеваемости</p>
+                            <div class="report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Просмотр
+                                </button>
+                                <button class="btn btn--small btn--secondary">
+                                    <i class="fas fa-download"></i> Скачать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-card__icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="report-card__content">
+                            <h3 class="report-card__title">Посещаемость</h3>
+                            <p class="report-card__description">Отчет по посещаемости занятий студентами</p>
+                            <div class="report-card__actions">
+                                <button class="btn btn--small btn--primary">
+                                    <i class="fas fa-eye"></i> Просмотр
+                                </button>
+                                <button class="btn btn--small btn--secondary">
+                                    <i class="fas fa-download"></i> Скачать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reports-content" id="customReports">
+                <div class="custom-report-builder">
+                    <div class="custom-report-builder__header">
+                        <h3 class="custom-report-builder__title">Конструктор отчетов</h3>
+                        <p class="custom-report-builder__description">Создайте собственный отчет, выбрав необходимые параметры</p>
+                    </div>
+                    <div class="custom-report-builder__form">
+                        <div class="form-group">
+                            <label for="reportName" class="form-label">Название отчета</label>
+                            <input type="text" id="reportName" class="form-input" placeholder="Введите название отчета">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Выберите данные для отчета</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox">
+                                    <input type="checkbox" checked> Студенты
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" checked> Оценки
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"> Посещаемость
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"> Преподаватели
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox"> Предметы
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group form-group--half">
+                                <label for="reportFaculty" class="form-label">Факультет</label>
+                                <select id="reportFaculty" class="form-select">
+                                    <option value="all">Все факультеты</option>
+                                    <option value="1">Информатика</option>
+                                    <option value="2">Экономика</option>
+                                    <option value="3">Юриспруденция</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group--half">
+                                <label for="reportGroup" class="form-label">Группа</label>
+                                <select id="reportGroup" class="form-select">
+                                    <option value="all">Все группы</option>
+                                    <option value="101">Группа 101</option>
+                                    <option value="102">Группа 102</option>
+                                    <option value="201">Группа 201</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group form-group--half">
+                                <label for="reportStartDate" class="form-label">Начало периода</label>
+                                <input type="date" id="reportStartDate" class="form-input">
+                            </div>
+                            <div class="form-group form-group--half">
+                                <label for="reportEndDate" class="form-label">Конец периода</label>
+                                <input type="date" id="reportEndDate" class="form-input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Формат отчета</label>
+                            <div class="radio-group">
+                                <label class="radio">
+                                    <input type="radio" name="reportFormat" checked> PDF
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="reportFormat"> Excel
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="reportFormat"> Word
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn btn--secondary">Отмена</button>
+                            <button class="btn btn--primary">Создать отчет</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reports-content" id="scheduledReports">
+                <div class="scheduled-reports">
+                    <div class="scheduled-reports__header">
+                        <h3 class="scheduled-reports__title">Запланированные отчеты</h3>
+                        <button class="btn btn--primary">
+                            <i class="fas fa-plus"></i> Добавить
+                        </button>
+                    </div>
+                    <div class="scheduled-reports__list">
+                        <div class="scheduled-report">
+                            <div class="scheduled-report__info">
+                                <h4 class="scheduled-report__name">Ежемесячный отчет по успеваемости</h4>
+                                <p class="scheduled-report__schedule">Каждый 1-й день месяца в 08:00</p>
+                                <p class="scheduled-report__recipients">Получатели: dekan@example.com, zavkaf@example.com</p>
+                            </div>
+                            <div class="scheduled-report__actions">
+                                <button class="scheduled-report__action" title="Редактировать">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="scheduled-report__action" title="Удалить">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="scheduled-report">
+                            <div class="scheduled-report__info">
+                                <h4 class="scheduled-report__name">Еженедельный отчет по посещаемости</h4>
+                                <p class="scheduled-report__schedule">Каждый понедельник в 09:00</p>
+                                <p class="scheduled-report__recipients">Получатели: curator@example.com</p>
+                            </div>
+                            <div class="scheduled-report__actions">
+                                <button class="scheduled-report__action" title="Редактировать">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="scheduled-report__action" title="Удалить">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="scheduled-report">
+                            <div class="scheduled-report__info">
+                                <h4 class="scheduled-report__name">Семестровый отчет по рейтингу студентов</h4>
+                                <p class="scheduled-report__schedule">15 января и 15 июня в 10:00</p>
+                                <p class="scheduled-report__recipients">Получатели: rector@example.com, dekan@example.com</p>
+                            </div>
+                            <div class="scheduled-report__actions">
+                                <button class="scheduled-report__action" title="Редактировать">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="scheduled-report__action" title="Удалить">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <div class="footer__column">
+                <div class="logo footer__logo">
+                    <img src="images/logo.png" alt="Логотип" class="logo__img">
+                    <h2 class="logo__title">СтудУспех</h2>
+                </div>
+                <p class="footer__text">Современная система учета успеваемости студентов для учебных заведений</p>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Навигация</h3>
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="index.html" class="footer__link">Главная</a></li>
+                    <li class="footer__item"><a href="students.html" class="footer__link">Студенты</a></li>
+                    <li class="footer__item"><a href="performance.html" class="footer__link">Успеваемость</a></li>
+                    <li class="footer__item"><a href="reports.html" class="footer__link">Отчеты</a></li>
+                </ul>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Контакты</h3>
+                <address class="footer__address">
+                    <a href="https://www.google.com/maps/search/google/@62.2264806,-6.5902735,710m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+                       class="footer__contact"><i class="fas fa-map-marker-alt"></i> г. Минск, ул. Примерная, д. 123</a>
+                    <p>
+                        <a href="tel:+375293334192" class="footer__contact"><i class="fas fa-phone"></i> +7 (123) 456-78-90</a>
+                    <p>
+                        <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSBnNZrQqTZTGRwsGcdPxJxRfkcZZVgbcljJtphKFBHJwKglgmPvNsnnLPxWrHCHCcMgQZdB"
+                           class="footer__contact"><i class="fas fa-envelope"></i> info@studuspeh.ru</a>
+                </address>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__heading">Подписка на новости</h3>
+                <form class="footer__form">
+                    <label>
+                        <input type="email" class="footer__input" placeholder="Ваш email" required>
+                    </label>
+                    <button type="submit" class="footer__button">Подписаться</button>
+                </form>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer__social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copyright">© 2025 СтудУспех. Все права защищены.</p>
+
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script src="scripts.js"></script>
+</body>
+</html>
